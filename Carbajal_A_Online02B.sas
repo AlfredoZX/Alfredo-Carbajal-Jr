@@ -1,0 +1,16 @@
+DATA More_Blood_Type;
+IF TESTEND NE 1 THEN INFILE'/home/u42026687/my_courses/haticesahinoglu0/Blood_Type_gender.csv' dsd dlm=','END=TESTEND;
+ELSE INFILE '/home/u42026687/my_courses/haticesahinoglu0/Blood_Type_gender_cont.csv' dsd dlm=',';
+INPUT BloodType $ Gender $;
+RUN;
+PROC PRINT DATA=More_Blood_Type;
+RUN;
+PROC CONTENTS DATA=MORE_BLOOD_TYPE;
+RUN;
+DATA AnotherVar;
+SET more_blood_type;
+IF BloodType='AB' THEN NewVariable='1';
+ELSE NewVariable='0';
+PROC PRINT DATA=AnotherVar;
+VAR Gender NewVariable;
+RUN;
